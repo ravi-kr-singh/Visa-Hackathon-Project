@@ -4,13 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class RegistrationActivity extends AppCompatActivity {
 
     Button registerButton;
+    private View registrationRoot;
+    private TextView passwordStrengthTextView;
+
+    private void calculatePasswordStrength(String str) {
+        // Now, we need to define a PasswordStrength enum
+        // with a calculate static method returning the password strength
+        PasswordStrength passwordStrength = PasswordStrength.calculate(str);
+        passwordStrengthTextView.setText(passwordStrength.msg);
+        registrationRoot.setBackgroundColor(passwordStrength.color);
+    }
 
     public void init(){
         registerButton = findViewById(R.id.registerButton);
@@ -29,6 +42,27 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
+        registrationRoot = findViewById(R.id.registrationRoot);
+        passwordStrengthTextView = findViewById(R.id.passwordStrengthTextView);
+        EditText passwordEditText = findViewById(R.id.passwordEditText);
+        // now we set Text Watcher on the edit text
+        // to update the password strength in real time
+        passwordEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                calculatePasswordStrength(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
         init();
     }
 }
