@@ -32,6 +32,7 @@ public class RegistrationActivity extends AppCompatActivity {
         // with a calculate static method returning the password strength
         PasswordStrength passwordStrength = PasswordStrength.calculate(str);
         passwordStrengthTextView.setText(passwordStrength.msg);
+       
         registrationRoot.setBackgroundColor(passwordStrength.color);
     }
 
