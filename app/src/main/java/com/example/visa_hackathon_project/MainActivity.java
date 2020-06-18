@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     Button loginButton;
 
     boolean isCredentialsValid(String email,String password){
-        // Check from database whether email is valid or not , as of now returning true always.
+        // Check from database whether email is valid or not , as of now returning true.
         return  true;
     }
 
