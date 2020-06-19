@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -13,6 +14,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView registerTextView;
@@ -20,10 +24,14 @@ public class MainActivity extends AppCompatActivity {
     EditText editTextPassword;
     Button loginButton;
 
-    boolean isCredentialsValid(String email,String password){
-        // Check from database whether email is valid or not , as of now returning true.
-        return  true;
+
+    public static boolean isEmailValid(String email) {
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
+
 
     public void initRegister(){
         registerTextView = findViewById(R.id.registerTextView);
@@ -62,12 +70,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
-                if( isCredentialsValid(email,password) ) {
+
+                if( isEmailValid(email) && password.length()>0) {
+
+                    // CALL LOGIN API
+
                     Intent newIntent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(newIntent);
                 }
-                else{
-                    Toast.makeText(MainActivity.this, "Invalid Email or Password :(", Toast.LENGTH_SHORT).show();
+                else {
+                   // Toast.makeText(MainActivity.this, "Invalid Credentials :(", Toast.LENGTH_SHORT).show();
+
+                    Toast toast = Toast.makeText(getApplicationContext(), "Invalid Credentials :(", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.TOP | Gravity.LEFT, 280, 50);
+                    toast.show();
+
                 }
 
 
