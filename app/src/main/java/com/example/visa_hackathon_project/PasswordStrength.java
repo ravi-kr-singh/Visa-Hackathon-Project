@@ -6,10 +6,10 @@ public enum PasswordStrength {
 
     // we use some color in green tint =>
     //more secure is the password, more darker is the color associated
-    WEAK(R.string.weak, Color.parseColor("#ffffff")),
-    MEDIUM(R.string.medium, Color.parseColor("#ffffff")),
-    STRONG(R.string.strong, Color.parseColor("#FAD931")),
-    VERY_STRONG(R.string.very_strong, Color.parseColor("#FAD931"));
+    WEAK(R.string.weak, Color.parseColor("#FFE769")),
+    MEDIUM(R.string.medium, Color.parseColor("#35FADF")),
+    STRONG(R.string.strong, Color.parseColor("#FF7E5E")),
+    VERY_STRONG(R.string.very_strong, Color.parseColor("#FFB0D4"));
 
     public int msg;
     public int color;
