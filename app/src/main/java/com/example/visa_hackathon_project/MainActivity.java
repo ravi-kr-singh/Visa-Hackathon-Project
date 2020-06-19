@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView registerTextView;
@@ -20,10 +23,14 @@ public class MainActivity extends AppCompatActivity {
     EditText editTextPassword;
     Button loginButton;
 
-    boolean isCredentialsValid(String email,String password){
-        // Check from database whether email is valid or not , as of now returning true.
-        return  true;
+
+    public static boolean isEmailValid(String email) {
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
+
 
     public void initRegister(){
         registerTextView = findViewById(R.id.registerTextView);
@@ -62,12 +69,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
-                if( isCredentialsValid(email,password) ) {
+                if( isEmailValid(email) ) {
+
+                    // CALL LOGIN API
+
                     Intent newIntent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(newIntent);
                 }
                 else{
-                    Toast.makeText(MainActivity.this, "Invalid Email or Password :(", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Invalid Email :(", Toast.LENGTH_SHORT).show();
                 }
 
 
