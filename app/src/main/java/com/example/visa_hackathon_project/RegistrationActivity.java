@@ -17,6 +17,11 @@ import java.util.regex.Pattern;
 public class RegistrationActivity extends AppCompatActivity {
 
     Button registerButton;
+    TextView backTextView;
+    EditText passwordEditText;
+    EditText mobileNumberEditText;
+    EditText nameEditText;
+    EditText emailEditText;
     private View registrationRoot;
     private TextView passwordStrengthTextView;
 
@@ -33,12 +38,31 @@ public class RegistrationActivity extends AppCompatActivity {
         PasswordStrength passwordStrength = PasswordStrength.calculate(str);
         passwordStrengthTextView.setText(passwordStrength.msg);
 
-        registrationRoot.setBackgroundColor(passwordStrength.color);
+        //registrationRoot.setBackgroundColor(passwordStrength.color);
     }
 
     public void init(){
         registerButton = findViewById(R.id.registerButton);
+        //Animating Register button
+        registerButton.setY(50);
+        registerButton.animate().translationYBy(-50).setDuration(1000);
+
         registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent newIntent = new Intent(RegistrationActivity.this,MainActivity.class);
+                startActivity(newIntent);
+            }
+        });
+    }
+    public void initBack(){
+        backTextView = findViewById(R.id.backTextView);
+        //Animating Back Text View
+        backTextView.setY(50);
+        backTextView.animate().translationYBy(-50).setDuration(1000);
+
+        backTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -56,7 +80,28 @@ public class RegistrationActivity extends AppCompatActivity {
 
         registrationRoot = findViewById(R.id.registrationRoot);
         passwordStrengthTextView = findViewById(R.id.passwordStrengthTextView);
-        EditText passwordEditText = findViewById(R.id.passwordEditText);
+        passwordEditText = findViewById(R.id.passwordEditText);
+        nameEditText = findViewById(R.id.nameEditText);
+        mobileNumberEditText = findViewById(R.id.moblieNumberEditText);
+        emailEditText = findViewById(R.id.emailEditText);
+
+
+        //Animation on clicking Registration
+        nameEditText.setX(-1000);
+        nameEditText.animate().translationXBy(1000).setDuration(1500);
+
+        emailEditText.setX(1000);
+        emailEditText.animate().translationXBy(-1000).setDuration(1500);
+
+        mobileNumberEditText.setX(-1000);
+        mobileNumberEditText.animate().translationXBy(1000).setDuration(1500);
+
+        passwordEditText.setX(1000);
+        passwordEditText.animate().translationXBy(-1000).setDuration(1500);
+
+        passwordStrengthTextView.setX(1000);
+        passwordStrengthTextView.animate().translationXBy(-1000).setDuration(1500);
+
 
         // now we set Text Watcher on the edit text
         // to update the password strength in real time
@@ -76,5 +121,6 @@ public class RegistrationActivity extends AppCompatActivity {
         });
 
         init();
+        initBack();
     }
 }
