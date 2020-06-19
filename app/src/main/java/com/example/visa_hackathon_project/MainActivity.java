@@ -24,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void initRegister(){
         registerTextView = findViewById(R.id.registerTextView);
+        //Animation
+        registerTextView.setY(100);
+        registerTextView.animate().translationYBy(-100).setDuration(1000);
+
+
         registerTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,6 +42,17 @@ public class MainActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
+        //Animation
+        editTextEmail.setX(-1000);
+        editTextEmail.animate().translationXBy(1000).setDuration(1500);
+
+        editTextPassword.setX(1000);
+        editTextPassword.animate().translationXBy(-1000).setDuration(1500);
+
+        loginButton.setY(50);
+        loginButton.animate().translationYBy(-50).setDuration(1000);
+
+
         loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override

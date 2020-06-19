@@ -32,7 +32,7 @@ public class RegistrationActivity extends AppCompatActivity {
         // with a calculate static method returning the password strength
         PasswordStrength passwordStrength = PasswordStrength.calculate(str);
         passwordStrengthTextView.setText(passwordStrength.msg);
-       
+
         registrationRoot.setBackgroundColor(passwordStrength.color);
     }
 
@@ -57,6 +57,7 @@ public class RegistrationActivity extends AppCompatActivity {
         registrationRoot = findViewById(R.id.registrationRoot);
         passwordStrengthTextView = findViewById(R.id.passwordStrengthTextView);
         EditText passwordEditText = findViewById(R.id.passwordEditText);
+
         // now we set Text Watcher on the edit text
         // to update the password strength in real time
         passwordEditText.addTextChangedListener(new TextWatcher() {
