@@ -4,5 +4,6 @@
   "NOT_ENOUGH_BALANCE" : "Account with Mobile No: '{}' does not have enough balance",
   "PAYMENT_SUCCESSFUL" : "Payment_successful",
   "WALLET_EXIST" : "Wallet with mobile number '{}' already exist",
-  "ERROR_IN_SAVING_WALLET" : "Some error occurred in saving the wallet with mobile number: '{}'"
+  "ERROR_IN_SAVING_WALLET" : "Some error occurred in saving the wallet with mobile number: '{}'",
+  "ERROR_IN_SENDING_MONEY" : "Server error in making the transaction. Try again Later"
 }

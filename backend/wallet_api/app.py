@@ -19,7 +19,7 @@ def create_tables():
     db.create_all()
 
 
-api.add_resource(Wallet, "/wallet")
+api.add_resource(Wallet, "/wallet/<string:mobile_number>")
 api.add_resource(WalletAmount, "/wallet/getamount")
 api.add_resource(AddWallet, "/addwallet")
 
