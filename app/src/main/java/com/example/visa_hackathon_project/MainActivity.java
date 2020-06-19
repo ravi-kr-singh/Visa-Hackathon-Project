@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -69,15 +70,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
-                if( isEmailValid(email) ) {
+
+                if( isEmailValid(email) && password.length()>0) {
 
                     // CALL LOGIN API
 
                     Intent newIntent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(newIntent);
                 }
-                else{
-                    Toast.makeText(MainActivity.this, "Invalid Email :(", Toast.LENGTH_SHORT).show();
+                else {
+                   // Toast.makeText(MainActivity.this, "Invalid Credentials :(", Toast.LENGTH_SHORT).show();
+
+                    Toast toast = Toast.makeText(getApplicationContext(), "Invalid Credentials :(", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.TOP | Gravity.LEFT, 280, 50);
+                    toast.show();
+
                 }
 
 
