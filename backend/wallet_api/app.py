@@ -8,9 +8,7 @@ from ma import ma
 from resources.wallet import Wallet, WalletAmount, AddWallet
 
 app = Flask(__name__)
-load_dotenv(".env")
 app.config.from_object("default_config")
-app.config.from_envvar("APPLICATION_SETTINGS")
 api = Api(app)
 
 
