@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     public void initRegister(){
         registerTextView = findViewById(R.id.registerTextView);
         //Animation

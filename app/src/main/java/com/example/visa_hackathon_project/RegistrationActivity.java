@@ -35,6 +35,19 @@ public class RegistrationActivity extends AppCompatActivity {
         return matcher.matches();
     }
 
+    public static boolean isMobileNumberValid(String mobile) {
+        int n = mobile.length();
+        if(n != 10)
+            return false;
+        for(int i=0;i<10;i++){
+            if(!(mobile.charAt(i) >= '0' && mobile.charAt(i) <= '9'))
+                return false;
+        }
+        return true;
+    }
+    
+
+
     private void calculatePasswordStrength(String str) {
         // Now, we need to define a PasswordStrength enum
         // with a calculate static method returning the password strength
