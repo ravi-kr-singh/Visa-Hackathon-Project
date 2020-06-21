@@ -26,7 +26,7 @@ visa = MVisa()
 class VirtualCard(Resource):
 
     @classmethod
-    # @jwt_required
+    @jwt_required
     def get(cls, mobile_number: str):
         """
         Accessing already generated card.
@@ -45,7 +45,7 @@ class VirtualCard(Resource):
         return {"message": CARD_GENERATED, "pan": virtual_card.pan}, 200
 
     @classmethod
-    # @jwt_required
+    @jwt_required
     def post(cls, mobile_number: str):
         """
         It creates PAN details if not yet created while checking your wallet was authorized.
@@ -67,10 +67,10 @@ class VirtualCard(Resource):
             return {"message": KYC_STATUS}, 400
 
         pan_pref = '40'
-        pan = pan_pref + str(uuid.uuid4().int >> 64)[0:14]
+        pan = pan_pref + str(uuid.uuid4().int >> 32)[0:14]
 
         while pan in PAN:
-            pan = pan_pref + str(uuid.uuid4().int >> 64)[0:14]
+            pan = pan_pref + str(uuid.uuid4().int >> 32)[0:14]
 
         card_generated_time = datetime.fromtimestamp(time.time()).isoformat()
         virtual_card = VirtualCardModel(pan, card_generated_time, mobile_number)
@@ -88,7 +88,7 @@ class VirtualCard(Resource):
 class AddAmount(Resource):
 
     @classmethod
-    # @jwt_required
+    @jwt_required
     def put(cls, mobile_number: str):
         """
         Adds amount to your virtual card temporarily.
@@ -122,7 +122,7 @@ class AddAmount(Resource):
 class Payment(Resource):
 
     @classmethod
-    # @jwt_required
+    @jwt_required
     def put(cls, mobile_number: str):
         """
         Completes the payment via VISA NET using mVisa API.
