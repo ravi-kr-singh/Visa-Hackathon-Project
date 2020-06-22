@@ -8,6 +8,12 @@ from libs.strings import gettext
 wallet_schema = WalletSchema()
 
 
+class Wallets(Resource):
+    @classmethod
+    def get(cls):
+        return {"wallets": [wallet_schema.dump(wallet) for wallet in WalletModel.query.all()]}
+
+
 class Wallet(Resource):
     @classmethod
     def get(cls, mobile_number: str):
@@ -18,15 +24,17 @@ class Wallet(Resource):
         """
         wallet = WalletModel.find_by_mobile_number(mobile_number)
         if wallet is None:
-            return {"message": gettext("WALLET_NOT_FOUND").format(mobile_number)}, 404
+            return {"message": gettext("WALLET_NOT_FOUND").format(mobile_number)}, 400
 
         if not wallet.kyc_status:
-            return {"message": gettext("KYC_NOT_DONE").format(mobile_number)}, 404
+            return {"message": gettext("KYC_NOT_DONE").format(mobile_number)}, 400
 
         return wallet_schema.dump(wallet), 200
 
 
 class WalletAmount(Resource):
+
+
     @classmethod
     def put(cls):
         """
@@ -36,13 +44,13 @@ class WalletAmount(Resource):
         data = request.get_json()
         wallet = WalletModel.find_by_mobile_number(data["mobile_number"])
         if wallet is None:
-            return {"message": gettext("WALLET_NOT_FOUND").format(data["mobile_number"])}, 404
+            return {"message": gettext("WALLET_NOT_FOUND").format(data["mobile_number"])}, 400
 
         if not wallet.kyc_status:
-            return {"message": gettext("KYC_NOT_DONE").format(data["mobile_number"])}, 404
+            return {"message": gettext("KYC_NOT_DONE").format(data["mobile_number"])}, 400
 
         if wallet.amount < data["amount"]:
-            return {"message": gettext("NOT_ENOUGH_BALANCE").format(data["mobile_number"])}, 404
+            return {"message": gettext("NOT_ENOUGH_BALANCE").format(data["mobile_number"])}, 400
 
         wallet.reduce_amount(data["amount"])
         try:
@@ -68,4 +76,4 @@ class AddWallet(Resource):
             wallet.save_to_db()
         except:
             return {"message": gettext("ERROR_IN_SAVING_WALLET").format(data["mobile_number"])}, 500
-        return wallet_schema.dump(wallet), 201
+        return wallet_schema.dump(wallet), 200

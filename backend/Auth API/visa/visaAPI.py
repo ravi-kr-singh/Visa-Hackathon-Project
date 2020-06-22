@@ -5,8 +5,8 @@ import os
 
 
 
-userName = 'USER NAME'
-password = 'PASSWORD'
+userName = '8GFE0M5K05DRU333DPRB21haM32rE3BRpRxawIqOoTTlE1h78'
+password = 'EhjXxl6b6'
 
 certificatePath = './VisaCert/cert.pem'
 privateKeyPath = './VisaCert/key_dc5f5933-d604-4b6f-a63a-136f20ee9892.pem'

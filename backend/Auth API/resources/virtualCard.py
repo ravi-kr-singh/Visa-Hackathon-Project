@@ -33,7 +33,7 @@ class VirtualCard(Resource):
         :param mobile_number:
         :return:
         """
-
+        
         try:
             virtual_card = VirtualCardModel.find_by_mobile_number(mobile_number)
         except:
@@ -59,6 +59,7 @@ class VirtualCard(Resource):
             return {"message": CARD_NOT_GENERATED}, 400
 
         wallet_response = wallet.authorize(mobile_number)
+        print(wallet_response)
 
         if not wallet_response:
             return {"message": INTERNAL_SERVER_ERROR}, 500
@@ -103,10 +104,10 @@ class AddAmount(Resource):
 
         wallet_response = wallet.get_amount(mobile_number, payload['amount'])
 
-        if wallet_response is None:
+        if not wallet_response:
             return {'message': INTERNAL_SERVER_ERROR}, 500
 
-        if wallet_response.status_code == 400:
+        if wallet_response.status_code != 200:
             return {'message': wallet_response.json()}, 400
 
         virtual_card.amount += payload['amount']

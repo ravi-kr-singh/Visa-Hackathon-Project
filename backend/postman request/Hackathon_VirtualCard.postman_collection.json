@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "aa9538d5-9d57-49bc-ae6d-3fae9acb1447",
+		"_postman_id": "649b6233-4158-4916-9bc1-c29708b79c71",
 		"name": "Hackathon_VirtualCard",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -32,15 +32,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5001/virtual_card/9812950111",
-					"protocol": "http",
+					"raw": "{{url1}}/virtual_card/9812950111",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{url1}}"
 					],
-					"port": "5001",
 					"path": [
 						"virtual_card",
 						"9812950111"
@@ -64,6 +59,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
 						"type": "text"
 					}
 				],
@@ -101,6 +101,11 @@
 						"key": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -111,19 +116,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5001/virtual_card/add_amount/9812950111",
-					"protocol": "http",
+					"raw": "{{url1}}/virtual_card/add_amount/9034553111",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{url1}}"
 					],
-					"port": "5001",
 					"path": [
 						"virtual_card",
 						"add_amount",
-						"9812950111"
+						"9034553111"
 					]
 				}
 			},

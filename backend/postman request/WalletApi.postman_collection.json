@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "2ff5895c-a792-4f08-b2fe-d9a82cd827c9",
+		"name": "WalletApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{{url}}/wallet/getamount",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"mobile_number\": \"9034553111\",\n    \"amount\": 50\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wallet/getamount",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wallet",
+						"getamount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/wallet/getallwallets",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wallet/getallwallets",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wallet",
+						"getallwallets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/addwallet",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"kyc_status\" : true,\n    \"mobile_number\": \"9812950111\",\n    \"amount\": 10000\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/addwallet",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"addwallet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/wallet<string:mobile_number>",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/wallet/9034553111",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"wallet",
+						"9034553111"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
