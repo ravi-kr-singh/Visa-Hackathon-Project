@@ -103,10 +103,10 @@ class AddAmount(Resource):
 
         wallet_response = wallet.get_amount(mobile_number, payload['amount'])
 
-        if not wallet_response:
+        if wallet_response is None:
             return {'message': INTERNAL_SERVER_ERROR}, 500
 
-        if wallet_response.status_code != 200:
+        if wallet_response.status_code == 400:
             return {'message': wallet_response.json()}, 400
 
         virtual_card.amount += payload['amount']
