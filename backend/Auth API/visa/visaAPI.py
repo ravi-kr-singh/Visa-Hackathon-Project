@@ -5,7 +5,7 @@ userName = '8GFE0M5K05DRU333DPRB21haM32rE3BRpRxawIqOoTTlE1h78'
 password = 'EhjXxl6b6'
 
 certificatePath = './VisaCert/cert.pem'
-privateKeyPath = './VisaCert/privateKey.pem'
+privateKeyPath = './VisaCert/key_dc5f5933-d604-4b6f-a63a-136f20ee9892.pem'
 caCertPath = "./VisaCert/server.pem"
 path = os.path.abspath("server.pem")
 
